@@ -427,9 +427,6 @@ class ElementBuilder {
         seqArr
       );
 
-      console.log(seqUp);
-      console.log(seqDown);
-
       const timeArr = [
         this.timer.tMax,
         this.timer.tMin,
