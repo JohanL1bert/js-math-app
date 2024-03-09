@@ -1,0 +1,303 @@
+body {
+  font-family: 'Courier New', monospace;
+  max-width: 1920px;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  height: 100vh;
+  background: #ebeff2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+#root {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main {
+  max-width: 43.75rem;
+  border: 0.25rem dashed #ffffffff;
+  padding: 1.125rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+@media screen and (max-width: 700px) {
+  .main {
+    width: 100%;
+  }
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.heading__name {
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.load {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.load__inner {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  max-width: 253px;
+}
+
+.load__input {
+  display: none;
+}
+
+.load__label {
+  display: flex;
+  align-items: center;
+  background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
+  border: 0;
+  border-radius: 0.5rem;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+  box-sizing: border-box;
+  color: #ffffff;
+  display: flex;
+  font-family: sans-serif;
+  font-size: 1.25rem;
+  justify-content: center;
+  line-height: 1rem;
+  max-width: 100%;
+  min-width: 8.75rem;
+  padding: 0.188rem;
+  touch-action: manipulation;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.load__label:active,
+.load__label:hover {
+  outline: 0;
+}
+
+.load__label {
+  background-color: rgb(5, 6, 45);
+  border-radius: 0.375rem;
+  width: 100%;
+  height: 100%;
+  transition: 300ms;
+}
+
+.load__label span {
+  background-color: rgb(5, 6, 45);
+  padding: 1rem 1.5rem;
+  border-radius: 0.375rem;
+  width: 100%;
+  height: 100%;
+  transition: 300ms;
+}
+
+.load__label:hover span {
+  background: none;
+}
+
+.load__label {
+  cursor: pointer;
+}
+
+.load__error {
+  color: #ff3333;
+}
+
+.load__cancel {
+  color: #bcbcbc;
+}
+
+.info__inner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.info__math {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  line-height: 1rem;
+  font-weight: 600;
+}
+
+.info__file__load {
+  resize: none;
+}
+
+table,
+th,
+td {
+  border: 1px solid grey;
+}
+
+.table__container {
+  overflow-x: auto;
+  max-width: 37.5rem;
+  margin: auto;
+}
+
+.table__wrapper {
+  width: max-content;
+  border-collapse: collapse;
+  margin-bottom: 1.25rem;
+}
+
+.table__header {
+  background-color: #73e251;
+  font-weight: 700;
+}
+
+th,
+td {
+  padding: 0.625rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  white-space: nowrap;
+}
+
+th {
+  background-color: #f2f2f2;
+  position: sticky;
+  left: 0;
+  z-index: 2;
+}
+
+@media screen and (max-width: 420px) {
+  th {
+    white-space: wrap;
+  }
+}
+
+td {
+  background-color: #fff;
+  width: 100%;
+}
+
+.info,
+.table__container,
+.table__wrapper {
+  width: 100%;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 5px 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+button.close {
+  background-color: #f44336;
+}
+
+button.close:hover {
+  background-color: #d32f2f;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal__content {
+  height: fit-content;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5%;
+  opacity: 0;
+  animation: scaleIn 0.3s ease-in-out;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.modal__info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.modal__info p::first-letter {
+  font-weight: 700;
+}
+
+@media screen and (max-width: 450px) {
+  .modal__content {
+    max-width: 12.5rem;
+    width: 100%;
+  }
+}
+
+.modal[open] {
+  opacity: 1;
+}
+
+.modal[open] .modal__content {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.close {
+  position: absolute;
+  top: 0rem;
+  right: -0.5rem;
+  font-size: 20px;
+  cursor: pointer;
+}

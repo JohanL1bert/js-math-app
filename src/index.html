@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="reset.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <div id="root">
+      <main class="main">
+        <header>
+          <button id="open">Show information</button>
+          <dialog id="myDialog" class="modal">
+            <div class="modal__content">
+              <button class="close" id="close">&times;</button>
+              <div class="modal__info">
+                <p>
+                  1. If array of data is very small. The timer can show 0.0ms.
+                  This means time for calculate and execute function is very
+                  small. And it is quite difficult to calculate it. Most likely
+                  0.0 can be seen as something in between 0.0ms and 1ms.
+                </p>
+                <p>
+                  2. Execution times may vary on different computers at
+                  different times. It all depends on what process is being
+                  performed and how loaded the vehicle is at the moment.
+                </p>
+                <p>
+                  3.The sorting method is quick sort. Because the bubble method
+                  would take too long to calculate the value.
+                </p>
+                <p>
+                  4. The application can absorb a file that contains letters,
+                  finding numbers in it and calculates them. How effective it is
+                  against symbols and other operands needs to be tested.
+                </p>
+              </div>
+            </div>
+          </dialog>
+        </header>
+        <section class="heading">
+          <h3 class="heading__name">Load and calc file app</h3>
+        </section>
+        <section class="load">
+          <div class="load__inner">
+            <input
+              type="file"
+              accept=".txt"
+              name="upload txt file"
+              class="load__input"
+              id="load__file"
+            />
+            <label for="load__file" class="load__label">
+              <span>Select a file</span>
+            </label>
+          </div>
+          <div class="load__name">
+            <p>Name:</p>
+            <p>Size:</p>
+          </div>
+          <p class="load__error"></p>
+          <p class="load__cancel"></p>
+        </section>
+        <section class="info">
+          <div class="info__inner">
+            <textarea
+              readonly
+              rows="10"
+              cols="40"
+              class="info__file__load"
+              id="area__info"
+            ></textarea>
+            <div class="table__container">
+              <div class="table">
+                <div class="table__inner">
+                  <table class="table__wrapper">
+                    <thead>
+                      <tr>
+                        <th class="table__header">Info</th>
+                        <th class="table__header">Time</th>
+                        <th class="table__header">Value</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th>Max:</th>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <th>Min:</th>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <th>Mediana:</th>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <th>Average:</th>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <th>Seqeunce Up:</th>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <th>Sequence Down:</th>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <th>File load:</th>
+                        <td colspan="2"></td>
+                      </tr>
+                      <tr>
+                        <th>Sort method:</th>
+                        <td colspan="2"></td>
+                      </tr>
+                      <tr>
+                        <th>Clone methods</th>
+                        <td colspan="2"></td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <th>Sum of time</th>
+                        <td colspan="2"></td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+  <script src="index.js"></script>
+</html>
