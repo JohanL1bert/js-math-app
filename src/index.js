@@ -142,48 +142,29 @@ class MathCalc {
    */
   sequenceNumberUp(arrOfNumbers) {
     if (arrOfNumbers.length === 0) {
-      return [];
+      return arrOfNumbers;
     }
 
-    let tails = [arrOfNumbers[0]];
-    let previousIndices = new Array(arrOfNumbers.length).fill(null);
+    let currentSequence = [arrOfNumbers[0]];
+    let maxSequence = [arrOfNumbers[0]];
 
     for (let i = 1; i < arrOfNumbers.length; i++) {
-      if (arrOfNumbers[i] < tails[0]) {
-        tails[0] = arrOfNumbers[i];
-        previousIndices[i] = null;
-      } else if (arrOfNumbers[i] > tails[tails.length - 1]) {
-        tails.push(arrOfNumbers[i]);
-        previousIndices[i] = tails.length - 2;
+      if (arrOfNumbers[i] > currentSequence[currentSequence.length - 1]) {
+        currentSequence.push(arrOfNumbers[i]);
       } else {
-        let left = 0;
-        let right = tails.length - 1;
-
-        while (left < right) {
-          let mid = Math.floor((left + right) / 2);
-
-          if (tails[mid] < arrOfNumbers[i]) {
-            left = mid + 1;
-          } else {
-            right = mid;
-          }
+        if (currentSequence.length > maxSequence.length) {
+          maxSequence = currentSequence.slice();
         }
 
-        tails[left] = arrOfNumbers[i];
-        previousIndices[i] = left > 0 ? left - 1 : null;
+        currentSequence = [arrOfNumbers[i]];
       }
     }
 
-    let maxLength = tails.length;
-    let currentIndex = maxLength - 1;
-
-    let largestSequence = [];
-    while (currentIndex !== null) {
-      largestSequence.unshift(tails[currentIndex]);
-      currentIndex = previousIndices[currentIndex];
+    if (currentSequence.length >= maxSequence.length) {
+      maxSequence = currentSequence.slice();
     }
 
-    return largestSequence;
+    return maxSequence;
   }
 
   /**
@@ -220,48 +201,29 @@ class MathCalc {
    */
   sequenceNumberDown(arrOfNumbers) {
     if (arrOfNumbers.length === 0) {
-      return [];
+      return arrOfNumbers;
     }
 
-    let tails = [arrOfNumbers[0]];
-    let previousIndices = new Array(arrOfNumbers.length).fill(null);
+    let currentSequence = [arrOfNumbers[0]];
+    let maxSequence = [arrOfNumbers[0]];
 
     for (let i = 1; i < arrOfNumbers.length; i++) {
-      if (arrOfNumbers[i] > tails[0]) {
-        tails[0] = arrOfNumbers[i];
-        previousIndices[i] = null;
-      } else if (arrOfNumbers[i] < tails[tails.length - 1]) {
-        tails.push(arrOfNumbers[i]);
-        previousIndices[i] = tails.length - 2;
+      if (arrOfNumbers[i] < currentSequence[currentSequence.length - 1]) {
+        currentSequence.push(arrOfNumbers[i]);
       } else {
-        let left = 0;
-        let right = tails.length - 1;
-
-        while (left < right) {
-          let mid = Math.floor((left + right) / 2);
-
-          if (tails[mid] > arrOfNumbers[i]) {
-            left = mid + 1;
-          } else {
-            right = mid;
-          }
+        if (currentSequence.length > maxSequence.length) {
+          maxSequence = currentSequence.slice();
         }
 
-        tails[left] = arrOfNumbers[i];
-        previousIndices[i] = left > 0 ? left - 1 : null;
+        currentSequence = [arrOfNumbers[i]];
       }
     }
 
-    let maxLength = tails.length;
-    let currentIndex = maxLength - 1;
-
-    let largestSequence = [];
-    while (currentIndex !== null) {
-      largestSequence.unshift(tails[currentIndex]);
-      currentIndex = previousIndices[currentIndex];
+    if (currentSequence.length >= maxSequence.length) {
+      maxSequence = currentSequence.slice();
     }
 
-    return largestSequence;
+    return maxSequence;
   }
 }
 
@@ -464,6 +426,9 @@ class ElementBuilder {
         this.math.sequenceNumberDown,
         seqArr
       );
+
+      console.log(seqUp);
+      console.log(seqDown);
 
       const timeArr = [
         this.timer.tMax,
