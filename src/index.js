@@ -108,9 +108,12 @@ class MathCalc {
     return average;
   }
 
-  /* By ChatGTP */
-  sequenceNumberUp(arrOfNumbers) {
-    let currentSequence = [arrOfNumbers[0]];
+  /**
+   * @copyright By ChatGpt
+   * @description Find All Sequence
+   * @example 
+   * // to find All SequenceUp
+   * let currentSequence = [arrOfNumbers[0]];
     let maxSequenceLength = 1;
     let allMaxSequences = [];
 
@@ -136,11 +139,59 @@ class MathCalc {
     }
 
     return allMaxSequences;
+   */
+  sequenceNumberUp(arrOfNumbers) {
+    if (arrOfNumbers.length === 0) {
+      return [];
+    }
+
+    let tails = [arrOfNumbers[0]];
+    let previousIndices = new Array(arrOfNumbers.length).fill(null);
+
+    for (let i = 1; i < arrOfNumbers.length; i++) {
+      if (arrOfNumbers[i] < tails[0]) {
+        tails[0] = arrOfNumbers[i];
+        previousIndices[i] = null;
+      } else if (arrOfNumbers[i] > tails[tails.length - 1]) {
+        tails.push(arrOfNumbers[i]);
+        previousIndices[i] = tails.length - 2;
+      } else {
+        let left = 0;
+        let right = tails.length - 1;
+
+        while (left < right) {
+          let mid = Math.floor((left + right) / 2);
+
+          if (tails[mid] < arrOfNumbers[i]) {
+            left = mid + 1;
+          } else {
+            right = mid;
+          }
+        }
+
+        tails[left] = arrOfNumbers[i];
+        previousIndices[i] = left > 0 ? left - 1 : null;
+      }
+    }
+
+    let maxLength = tails.length;
+    let currentIndex = maxLength - 1;
+
+    let largestSequence = [];
+    while (currentIndex !== null) {
+      largestSequence.unshift(tails[currentIndex]);
+      currentIndex = previousIndices[currentIndex];
+    }
+
+    return largestSequence;
   }
 
-  /* By ChatGPT */
-  sequenceNumberDown(arrOfNumbers) {
-    let currentSequence = [arrOfNumbers[0]];
+  /**
+   * @copyright By ChatGpt
+   * @description Find All Sequence
+   * @example 
+   * // to find All SequenceDown
+   *  let currentSequence = [arrOfNumbers[0]];
     let maxSequenceLength = 1;
     let allMaxSequences = [];
 
@@ -166,6 +217,51 @@ class MathCalc {
     }
 
     return allMaxSequences;
+   */
+  sequenceNumberDown(arrOfNumbers) {
+    if (arrOfNumbers.length === 0) {
+      return [];
+    }
+
+    let tails = [arrOfNumbers[0]];
+    let previousIndices = new Array(arrOfNumbers.length).fill(null);
+
+    for (let i = 1; i < arrOfNumbers.length; i++) {
+      if (arrOfNumbers[i] > tails[0]) {
+        tails[0] = arrOfNumbers[i];
+        previousIndices[i] = null;
+      } else if (arrOfNumbers[i] < tails[tails.length - 1]) {
+        tails.push(arrOfNumbers[i]);
+        previousIndices[i] = tails.length - 2;
+      } else {
+        let left = 0;
+        let right = tails.length - 1;
+
+        while (left < right) {
+          let mid = Math.floor((left + right) / 2);
+
+          if (tails[mid] > arrOfNumbers[i]) {
+            left = mid + 1;
+          } else {
+            right = mid;
+          }
+        }
+
+        tails[left] = arrOfNumbers[i];
+        previousIndices[i] = left > 0 ? left - 1 : null;
+      }
+    }
+
+    let maxLength = tails.length;
+    let currentIndex = maxLength - 1;
+
+    let largestSequence = [];
+    while (currentIndex !== null) {
+      largestSequence.unshift(tails[currentIndex]);
+      currentIndex = previousIndices[currentIndex];
+    }
+
+    return largestSequence;
   }
 }
 
