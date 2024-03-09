@@ -204,7 +204,6 @@ class ElementBuilder {
 
   get #getFileInfo() {
     const fileList = event.target.files;
-
     return fileList[0];
   }
 
@@ -227,6 +226,10 @@ class ElementBuilder {
     this.elLoadCancel.innerHTML = '';
 
     const file = this.#getFileInfo;
+
+    /* Reset file value to fire every time even the same file is load. 
+    Cause file inside can change */
+    event.target.value = '';
 
     if (file === undefined) {
       return this.cancelLoadFile();
